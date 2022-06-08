@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 500px;
+            height: 200px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>자바스크립에서의 데이터 입/출력</h1>
+    <!--
+        자바스크립트 데이터 입출력 관련 객체들
+        1.window : 자바스크립트 내장객체로 브라우저창이 하나 열릴때마다 하나씩 만들어지는 객체
+                    브라우저 창 안에 존재하는 모든 요소들의 최상위 객체
+                    extent.Object(즉, 모든 곳에 적용되기 떄문에 생략 가능)
+                    =>window.alert(); => alert();
+                    =>console.log(); => window.consolze.log();
+        2.document : 웹문서(HTML)마다 하나씩 만들어지는 객체
+                    HTML문서에 대한 정보들을 가지고 있음
+                    ->document.getElementById();
+
+    -->
+
+ 
+    <h2>1. 데이터를 출력하는 기본 구문</h2>
+
+    <p>
+        1)window.alert('알림창에 출력할 문구'); <br>
+        2)window.console.log('콘솔창에 출력할 문구');<br>
+        3)document.write('화면에 출력할 문구');<br>
+       ***** 4) 선택한 요소 .innerHTML/innerText = '해당 요소에 출력할 문구';
+    </p>
+
+
+    <h2>3) document.write('화면에 출력할 문구');</h2>
+
+    <button onclick="documentWrite()">화면에 출력</button>
+
+    <script>
+        function documentWrite(){
+            //documentWrite('출력....?'); 
+            // document.write('<b>안녕?<b><br><b>성공?</b>');
+            //화면에 출력할 문자열이 html태그가 있을 경우 진짜 html태그로 해석
+
+            //테이블 만들어보기 
+            var table = '<table border ="1">';
+                table += '<tr>';
+                table += '<td>1</td>';
+                table += '<td>2</td>';
+                table += '</tr>';
+                table += '</table>';
+        
+        }
+
+    </script>
+
+
+    <h3>4.선택한 요소.innerHTML/ innerText = '해당 요소에 출력할 내용';</h3>
+
+    <div id="area1" class="area">
+        innerHTML과 innerText
+        자바스크립트에서 어떤 요소(Elemnet)안의 값(Content)을 가지고 온다거나<br>
+        변경하고자 할 때 <b>innerHTML, innerText</b>라는 속성에 접근해야한다. <br>
+        => 가지고 올 때 : 변수 = 선택한 요소 .innerHTML/ innerText; <br>
+        => 변경하고자 할 때 : 선택한 요소.innerHTML/ innerText = '변경할 값';
+
+    </div>
+
+    <!--div요소 테두리는 검정색 실선, 1px 짜리 가로길이 500px 세로길이 200px 클래스 속성 = area 선택자도 클래스-->
+    <!--JDBC(JAVA, SQL문), 선택자, FormTag, TableTag, JavaScript-->
+
+    <button onclick="tagValue()">확인</button>
+    <button onclick="a()">안녕</button>
+    
+    <script>
+        function tagValue(){
+            //1.먼저 해당 요소 객체를 가져와서 변수에 담는다.
+            var divEl = document.getElementById('area1'); //div요소 객체를 변수에 담음
+
+            console.log(divEl);
+
+            console.dir(divEl); //해당 값의 디렉토리 구조를 보고자할 때 (속성들의 정보)
+
+            //선택한 요소 내에 정보들을 알아내고자 한다면 속성들에 .으로 직접 접근해야함
+            console.log(divEl.id);//id : 해당 요소의 id 값
+
+
+            console.log(divEl.className);//className:해당 요소의 class값
+       
+            console.log(divEl.innerHTML); //HTML태그를 포함
+            console.log(divEl.innerText); //HTML태그를 미포함
+
+            //Content 영역값을 가져와버림
+            //이번에는 변경해보자 => 대입
+            //divEl.innerText = '<b>innerText로 속성값을 변경함<b>';
+            divEl.innerHTML = '<b>innerText로 속성값을 변경함<b>';
+
+            divEl.style = 'color : red; font-size :20px';
+
+            
+        }
+
+        function a(){
+            var divEl = document.getElementById('area1');
+
+            window.alert('안녕');
+        }
+
+        //div클릭 시 '안녕'이라는 문구 알림창으로 띄워주기
+        /*
+            var divEl = documnet.getElementById('area1');
+
+            divEl.onclick = function(){
+                alert('안녕!');
+            }
+        
+        */
+
+
+
+    </script>
+
+    <h2>2. 데이터를 입력받는 기본 구문</h2>
+
+    <p>
+        1) 변수 = window.confirm('질문 내용');<br>
+        2) 변수 = window.prompt('질문내용');<br>
+        3) 변수 = 선택한 요소.속성;(id,className, innerHTML, innerText);
+        4)변수 = 선택한input요소.value
+
+
+    </p>
+
+    <h3>1) window.confirm('질문내용');</h3>
+
+    <p>
+        confirm 호출 시 "질문 내용"과 "확인/취소" 버튼이 존재하는 알림창 발생<br>
+        확인 버튼 클릭시 true, 취소 버튼 누를시 false값 반환
+    </p>
+
+
+
+    <button onclick="testConfirm()">클릭</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function testConfirm(){
+            var result = confirm('졸리면 확인, 아니면 취소를 누르세요');
+        
+            console.log(result);
+            
+            var divEl = document.getElementById('area2');
+            if(result){
+                divEl.innerHTML="졸려요 ~.~";
+            }
+            else{
+                divEl.innerHTML="안졸려요 ^.^";
+
+            }
+        }
+    </script>
+
+    <h3>2)window.prompt('질문내용');</h3>
+
+    <p>
+        promt호출 시 '질문내용'과 입력할 수 있는 텍스트 상자 와 확인/취소 버튼이 보여지는 알림창 발생
+        -확인 버튼 클릭 시 텍스트 상자에 입력되어있는 값이 반환<br>
+        -취소 버튼 클릭 시 null값을 반환
+    </p>
+
+    <button onclick='testPrompt();'>클릭</button>
+    <div id="area3" class="area"> </div>
+
+    <script>
+        function testPrompt(){
+            var name = window.prompt('너 이름이 뭐니');
+            var address = window.prompt('너 어디에 사니');
+
+            console.log(name);
+            console.log(address);
+
+
+            //xx에 사시는 xxx님의 방문을 환영합니다 형태로 div 내부에 출력
+            var divEl = document.getElementById("area3");
+
+            divEl.innerHTML ='<b>'+address+'에 사시는'+name+'님의 방문을 환영합니다.</b>';
+
+        }
+
+    </script>
+
+    <button onclick="testPrompt2();">숫자입력</button>
+    <ul id="ul1"></ul>
+
+    <script>
+
+        function testPrompt2(){
+
+            var num = window.prompt('숫자만 입력해주세요');
+            var str =' ';
+            for(var i=1; i<=num;i++){
+                str += '<li>'+ i +'번째</li>';
+            }
+
+            var ulEl = document.getElementById('ul1');
+            ulEl.innerHTML = str; /*사용자가 입력한 값만큼의 li 요소*/
+        }
+    </script>
+
+
+    <h4>4)선택한 input 요소.value;</h4>
+
+    아이디 : <input type="text" id="userId"> <br>
+    비밀번호 : <input type="password" id="userPwd"><br>
+
+
+    <Button onclick="testInput();">클릭</Button>
+
+    <script>
+        function testInput(){
+
+            
+            console.dir(document.getElementById('userId'));
+            var id = document.getElementById('userId');
+            var pwd = document.getElementById('userPwd');
+
+            console.log('아이디 : '+ id.value);
+            console.log('비밀번호 : '+ pwd.value);
+        }
+
+
+
+    </script>
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+
+
+</body>
+</html>
