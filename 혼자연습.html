@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #field{
+            border: dotted;
+            width: 50px;
+            height: auto;
+        }
+
+        thead>tr{
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>아아아</th>
+                <th>이이이</th>
+                <th>에에에ㅔ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+
+        </tfoot>
+    </table>
+
+    <br><br><br><br>
+
+    <fieldset id="field">
+        <legend>아ㅏㅇ</legend>
+        ㅇㄹㅇㄹㅇㄹ
+    </fieldset>
+
+    <input type="submit" name="제출">
+
+    <form name="thisForm">
+        <p class="qna_privacy_agree">	
+            <input type="checkbox" id="agree_chk" name="agree_chk" class="agree_ck"/>
+    	    <label for="agree_chk" >동의합니다.</label> 
+        </p>
+
+        <button type="button" onClick="chk();">확인</button>
+    </form>
+    <script>
+        function chk() {
+            var f = document.thisForm;
+                if(f.agree_chk.checked!==true) {	
+                    alert("개인정보보호 문서를 읽고 '동의합니다'에 체크해 주세요.");}
+                else {	
+                    alert('통과');	
+                    f.submit();	}
+                }
+    </script>
+
+    <div id="login_form">
+        <form action="test.do" method="post" id="login_form_input">
+                            
+            <div id="login_input_id_pwd">
+                <input type="text" name="userId" placeholder="아이디" required>
+                <input type="password" name="userPwd" placeholder="비밀번호">
+            </div>
+        
+            <div id="login_input_btn">
+                <input type="submit" value="로그인">
+            </div>
+        </form>
+
+        <div id="login_form_etc">
+            <a href="">회원가입</a>
+            <a href="">ID/PW찾기</a>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="chkAll" onclick="check()">전체
+        <input type="checkbox" name="chk" id="1" value="1"><label for="1">1</label>
+        <input type="checkbox" name="chk">2
+        <input type="checkbox" name="chk">3
+    </div>
+
+    <script>
+        function check(){
+            var ch=document.getElementById('chkAll');
+            var c = document.getElementsByName('chk');
+
+            for(var i=0;i<c.length;i++){
+                c[i].checked = ch.checked;
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>

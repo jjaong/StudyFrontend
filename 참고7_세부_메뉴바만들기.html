@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        div{
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+
+        #navigator{
+            width: 1000px;
+            height: 40px;
+        }
+
+        #navi{
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+        }
+
+        #navi>li{
+            float: left;
+            width: 14%;
+            text-align: center;
+            height: 100%;
+        }
+
+        #navi a{
+            text-decoration: none;
+            color: lightblue;
+            font-size: 13px;
+            font-weight: 900;
+            width: 100%;
+            height: 100%; /*a태그는 인라인요소기 떄문에 width,height 속성이 적용x */
+            display: block;/*인라인요소들를 블록요소로 바꿔줌*/
+            /*vertical-align: middle; 블록요소에서 적용x*/
+            line-height: 35px;
+        }
+
+        #navi a:hover{
+            color: cadetblue;
+            font-size: 14px;
+        }
+
+        #navi>li>ul{
+            list-style-type: none;
+            padding: 0px;
+            display: none; /*평소에는 안보여지다가 마우스가 올라가는 순간 펼쳐지는 */
+        }
+        #navi>li>a:hover+ul{
+            display: block;
+        }
+        #navi>li>ul:hover{
+            display: block;
+        }
+
+        #navi>li>ul a{font-size: 10px;}
+        #navi>li>ul a:hover{font-size: 13px;}
+    </style>
+</head>
+<body>
+    <div id="navigator">
+        <ul id="navi">
+
+            <li><a href="">Java</a></li>
+            <li><a href="">Oracle</a></li>
+            <li>
+                <a href="">Front-End</a>
+                <ul>
+                    <li><a href="">HTML</a></li>
+                    <li><a href="">CSS</a></li>
+                    <li><a href="">JavaScript</a></li>
+                    <li><a href="">jQuery</a></li>
+                </ul>
+            </li>
+            <li>
+            <ul>
+                <a href="">Server</a>
+                <ul>
+                    <li><a href="">JDBC</a></li>
+                    <li><a href="">Servlet</a></li>
+                    <li><a href="">JSP</a></li>
+                    <li><a href="">Ajax</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="">Framework</a>
+                <ul>
+                    <li><a href="">MyBatis</a></li>
+                    <li><a href="">Spring</a></li>
+                </ul>
+                
+            </li>
+
+        </ul>
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트의 50%</title>
+    <style>
+
+        .area{
+            border: 1px solid black;
+            width: 300px;
+            height: 100px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML요소에 접근하기(해당 요소객체 가져오기)</h1>
+
+    <h3>1)아이디로 접근하기</h3>
+    <div id="area1" class="area"></div>
+    <button onclick="accessId()">아이디로 접근</button>
+
+    <script>
+        function accessId(){
+            //아이디로 요소에 접근
+            //document.getElementById('접근할 요소의 아이디 속성 값');
+            //요소객체라고 부른다.
+            var area1 = document.getElementById('area1');
+            
+            console.log(area1);
+            console.dir(area1);
+
+            //선택된 요소의 속성들에 접근해서 값을 가져온다거나 변경이 가능하다.
+            //속성에 접근하고자한다면=>선택된요소객체.접근하고자하는속성명
+            area1.innerHTML='아이디로 접근 성공!<br>';
+            area1.innerHTML+='<mark>한줄 추가!</mark>'; //+=로 해야 추가! =는 대입이잖아~
+            //선택된 요소의 스타일 변경
+           // area1.style = 'background : pink; color: skyblue; width:100px;';
+           //개발자 도구로 확인 시 인라인 방식으로 스타일이 부여된다.
+
+           area1.style.background = 'pink';
+           area1.style.color = 'skyblue';
+           area1.style.width = '100px';
+        }
+    </script>
+
+    <br><br><br>
+
+    <div id="area2" class="area" style="background-color: red;"></div>
+    <button onclick="changeColor()">실습시간</button>
+
+    <script>
+        function changeColor(){
+
+            var area2 = document.getElementById('area2');
+
+            if(area2.style.background =='red'){
+                area2.style.background = 'yellow';
+            }else if(area2.style.background =='yellow'){
+                area2.style.background = 'blue';
+            }else if(area2.style.background=='blue'){
+                area2.style.background = 'purple';
+            }else if(area2.style.background == 'purple'){
+                area2.style.background = 'green';
+            }else if(area2.style.background == 'green'){
+                area2.style.background = 'pink';
+            }else {
+                area2.style.background ='red'
+            }
+        }
+
+    </script>
+
+    <hr>
+
+    <h3>2)태그명으로 가져오기</h3>
+
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+
+    <button onclick="accessTagName();">태그명으로 접근</button>
+
+
+    <script>
+        function accessTagName(){
+            //태그명으로 요소에 접근
+            //document.getElementsByTagName('접근하고자 하는 태그명');
+            // => 선택된 여러개의 요소객체들이 배열에 담겨서 반환
+            //자바스크립트에서 배열은 []로 표현
+
+            var list = document.getElementsByTagName('li'); //[li요소객체1, li요소객체2, li요소객체3...]
+
+            console.log(list);
+            console.log('배열의 크기 : ' + list.length);
+
+            list[0].style.background = 'rgb(204, 230, 13)';
+            var blueColor = 50;
+
+            for(var i=0; i<list.length;i++){
+                list[i].style.background = 'rgb(204,230,' + blueColor + ')';
+                blueColor +=40;
+            }
+        }
+
+
+
+    </script>
+
+
+    <br>
+
+    <hr>
+
+    <h3>3)name 속성값으로 접근하기</h3>
+    
+    
+    <form action="test.do">
+        <fieldset>
+            <legend>취미</legend>
+            <input type="checkbox" name="hobby" id="soccer" value="축구"><label for="soccer">축구</label> 
+            <input type="checkbox" name="hobby" id="movie" value="영화"><label for="movie">영화시청</label>
+            <input type="checkbox" name="hobby" id="sleep" value="낮잠"><label for="sleep">낮잠</label>
+            <input type="checkbox" name="hobby" id="coding" value="코딩">코딩
+            <input type="checkbox" name="hobby" id="climb" value="등산">등산
+            <input type="checkbox" name="hobby" id="game" value="게임">게임
+        </fieldset>
+    </form>
+
+    <button onclick="accessName();">name으로 접근</button>
+
+    <script>
+        //선언적 함수
+        function accessName(){
+            //name속성값으로 요소를 접근할 때 
+            //document.getElementsByName('접근하고자하는 name속성값')
+            var hobby = document.getElementsByName('hobby');
+
+            console.log(hobby);
+        
+            //체크가 되었는지 안되었는지 확인하는 로직 써보기
+            //checked
+            var checkedItem = '';
+
+            for(var i=0 ; i<hobby.length;i++){
+                if(hobby[i].checked){
+                    checkedItem += hobby[i].value + ' ';
+                }
+            }
+            alert(checkedItem);
+           
+        }
+    </script>
+
+
+    <hr>
+
+    <h3>4)클래스명으로 접근하기</h3>
+    <div class="test"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li></li>
+        <li></li>
+    </ul>
+    <pre class="test test2"></pre>
+    <button onclick="accessClassName()">class 속성명으로 접근</button>
+    <script>
+        function accessClassName(){
+            //class속성으로 요소를 가져올때
+            //document.getElementsByClassName('접근하고자 하는 class 속성 값')
+            //-> 선택된 요소 객체들을 배열에 담아 반환
+            var arr = document.getElementsByClassName('test');
+
+            console.log(arr);
+        }
+
+
+    </script>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>
